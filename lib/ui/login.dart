@@ -23,9 +23,8 @@ class LoginState extends State<Login> {
   void _showWelcome() {
     setState(() {
       if (_userController.text.isNotEmpty && _passController.text.isNotEmpty) {
-        _welcomeString =  _userController.text;
-      }
-      else{
+        _welcomeString = _userController.text;
+      } else {
         _welcomeString = "Nothing";
       }
     });
@@ -42,7 +41,7 @@ class LoginState extends State<Login> {
       backgroundColor: Colors.blueGrey,
       body: new Container(
         alignment: Alignment.topCenter,
-        child: new Column(
+        child: new ListView(
           children: <Widget>[
             //image/profile
             new Image.asset(
@@ -57,18 +56,25 @@ class LoginState extends State<Login> {
               color: Colors.white,
               child: new Column(
                 children: <Widget>[
+                  new Padding(padding: EdgeInsets.only(right: 16.0),child:
                   new TextField(
                     controller: _userController,
                     decoration: new InputDecoration(
                       hintText: 'Username',
                       icon: new Icon(Icons.person),
                     ),
-                  ),
-                  new TextField(
-                    controller: _passController,
-                    decoration: new InputDecoration(
-                      hintText: 'Password',
-                      icon: new Icon(Icons.lock),
+                  ),),
+
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: new TextField(
+                      controller: _passController,
+                      decoration: new InputDecoration(
+                        hintText: 'Password',
+                        icon: new Icon(Icons.lock),
+
+                      ),
+                        obscureText: true,
                     ),
                   ),
                   new Padding(padding: new EdgeInsets.all(10.5)),
@@ -80,7 +86,7 @@ class LoginState extends State<Login> {
                         new Container(
                           margin: const EdgeInsets.only(right: 20.0),
                           child: new RaisedButton(
-                            onPressed:_showWelcome,
+                            onPressed: _showWelcome,
                             child: new Text(
                               "Login",
                               style: new TextStyle(
